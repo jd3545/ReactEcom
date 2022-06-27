@@ -4,21 +4,21 @@ export const sliderItems = [
         img: "https://cdn.rit.edu/images/news/2018-12/rit_finger_lakes.jpeg.jpg",
         title: "SUMMER APPERAL",
         desc: "RIT Summer Apperal",
-        bg: "#e2f4c7"
+        bg: "#e2f4c7",
     },
     {
         id: 2,
         img: "https://pbs.twimg.com/media/FIMEYeAXsAkWBBI?format=jpg&name=medium",
         title: "WINTER APPERAL",
         desc: "RIT Winter Apperal",
-        bg: "f5fafd"
+        bg: "f5fafd",
     },
     {
         id: 3,
         img: 'https://cdn.rit.edu/images/news/2021-07/MAN-SHED-DJI_0448.jpg',
         title: "SPRING APPERAL",
         desc: "RIT Spring Apperal",
-        bg: "FEF7EE"
+        bg: "FEF7EE",
     },
 ];
 
@@ -33,7 +33,7 @@ export const categories = [
         id: 2,
         img: 'https://images.footballfanatics.com/FFImage/thumb.aspx?i=/productimages/_4729000/altimages/ff_4729105-29ddc72dfce4ac91905calt1_full.jpg&w=900',
         title: " RIT SWEATSHIRT",
-        cat: "hoodie"
+        cat: "sweatshirt"
     },
     {
         id: 3,

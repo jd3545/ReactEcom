@@ -6,6 +6,7 @@ Description: Pre-made cart page needs backend implemented for fully fuctioning c
 */
 
 import { Add, Remove } from "@material-ui/icons"
+import { useSelector } from "react-redux"
 import styled from "styled-components"
 import Announcement from "../components/Announcement.jsx"
 import Footer from "../components/Footer.jsx"
@@ -154,6 +155,7 @@ const Button = styled.button`
     font-weight: 600;
 `
 const Cart = () => {
+    const cart = useSelector(state => state.cart)
     return (
         <Container>
             <Navagation />
@@ -171,52 +173,34 @@ const Cart = () => {
                 </Top>
                 <Bottom>
                     <Info>
-                        <Product>
-                            <ProductDet>
-                                <Image src="https://images.footballfanatics.com/FFImage/thumb.aspx?i=/productimages/_4739000/altimages/ff_4739406-8ea3f4b179de5196a1bfalt1_full.jpg&w=900" />
-                                <Details>
-                                    <ProductName><b>Product:</b>RIT HOODIE</ProductName>
-                                    <ProductId><b>ID:</b>92394023</ProductId>
-                                    <ProductColor color="grey" />
-                                    <ProductSize><b>Size:</b>Large</ProductSize>
-                                </Details>
-                            </ProductDet>
-                            <PriceDet>
-                                <ProductAmountContainer>
-                                    <Add />
-                                    <ProductAmount>3</ProductAmount>
-                                    <Remove />
-                                </ProductAmountContainer>
-                                <ProductPrice>$86</ProductPrice>
-                            </PriceDet>
-                        </Product>
-                        <Hr />
+                        {cart.products.map(product => (
 
-                        <Product>
-                            <ProductDet>
-                                <Image src="https://images.footballfanatics.com/FFImage/thumb.aspx?i=/productimages/_4611000/altimages/ff_4611465-79397e809875b3c3d943alt1_full.jpg&w=900" />
-                                <Details>
-                                    <ProductName><b>Product:</b>RIT HOODIE</ProductName>
-                                    <ProductId><b>ID:</b>92394023</ProductId>
-                                    <ProductColor color="orange" />
-                                    <ProductSize><b>Size:</b>Large</ProductSize>
-                                </Details>
-                            </ProductDet>
-                            <PriceDet>
-                                <ProductAmountContainer>
-                                    <Add />
-                                    <ProductAmount>1</ProductAmount>
-                                    <Remove />
-                                </ProductAmountContainer>
-                                <ProductPrice>$53</ProductPrice>
-                            </PriceDet>
-                        </Product>
+                            <Product>
+                                <ProductDet>
+                                    <Image src={product.img} />
+                                    <Details>
+                                        <ProductName><b>Product:</b>{product.title}</ProductName>
+                                        <ProductId><b>ID:</b>{product._id}</ProductId>
+                                        <ProductColor color={product.color} />
+                                        <ProductSize><b>Size:</b>{product.size}</ProductSize>
+                                    </Details>
+                                </ProductDet>
+                                <PriceDet>
+                                    <ProductAmountContainer>
+                                        <Add />
+                                        <ProductAmount>{product.quantity}</ProductAmount>
+                                        <Remove />
+                                    </ProductAmountContainer>
+                                    <ProductPrice>${product.price * product.quantity}</ProductPrice>
+                                </PriceDet>
+                            </Product>))}
+                        <Hr />
                     </Info>
                     <Summary>
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                         <SummaryItem>
                             <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>$ 139</SummaryItemPrice>
+                            <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -228,7 +212,7 @@ const Cart = () => {
                         </SummaryItem>
                         <SummaryItem type="total">
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice>$ 139</SummaryItemPrice>
+                            <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                         </SummaryItem>
                         <Button>Checkout Now</Button>
                     </Summary>

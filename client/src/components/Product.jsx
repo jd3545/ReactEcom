@@ -80,12 +80,12 @@ const Product = ({ item }) => {
             <Circle />
             <Image src={item.img} />
             <Info>
-                <Link to="/product/ID_HERE" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                <Link to={`/product/${item._id}`}>
                     <Icon>
                         <ShoppingCartOutlined />
                     </Icon>
                 </Link>
-                <Link to="/product/ID_HERE" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                <Link to={`/product/${item._id}`}>
                     <Icon>
                         <SearchOutlined />
                     </Icon>

@@ -11,6 +11,8 @@ import { Search, ShoppingCartOutlined } from "@material-ui/icons"
 import { Badge } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { mobile } from "../responsive.js";
+import { useSelector } from "react-redux";
+
 const Container = styled.div`
     height: 60px;
     ${mobile({ height: "50px" })}
@@ -76,6 +78,7 @@ const MenuLink = styled.div`
 `
 
 const Navagation = () => {
+    const quantity = useSelector(state => state.cart.quantity)
     return (
         <Container>
             <Wrapper>
@@ -103,14 +106,13 @@ const Navagation = () => {
                             SIGN IN
                         </MenuLink>
                     </Link>
-                    <MenuLink>
-                        <Link to="/cart" style={{ color: 'inherit', textDecoration: 'inherit' }}>
-
-                            <Badge badgeContent={4} color="secondary">
+                    <Link to="/cart" >
+                        <MenuLink>
+                            <Badge badgeContent={quantity} color="secondary">
                                 <ShoppingCartOutlined />
                             </Badge>
-                        </Link>
-                    </MenuLink>
+                        </MenuLink>
+                    </Link>
                 </Right>
             </Wrapper>
         </Container>
