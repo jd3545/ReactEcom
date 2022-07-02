@@ -5,8 +5,11 @@ jd3545@rit.edu
 Description: Login page needs backend implementation for fully functioning page
 */
 
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { login } from "../redux/apiCalls.js";
 import { mobile } from "../responsive.js";
 
 const Container = styled.div`
@@ -50,6 +53,13 @@ const Button = styled.button`
     color: white;
     cursor: pointer;
     margin-bottom: 10px;
+    &:disabled{
+        color: green;
+        cursor: not-allowed;
+    }
+`
+const Error = styled.span`
+    color: red;
 `
 const Linka = styled.a`
     margin: 5px 0px;
@@ -58,16 +68,26 @@ const Linka = styled.a`
     cursor: pointer;
 `
 const Login = () => {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const dispatch = useDispatch();
+    const { isFetching, error } = useSelector((state) => state.user)
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        login(dispatch, { username, password })
+    }
     return (
         <Container>
             <Wrapper>
                 <Title>SIGN IN</Title>
                 <Form>
-                    <Input placeholder="Username" />
-                    <Input placeholder="Passowrd" />
-                    <Link to={`/home`}>
-                        <Button>Login</Button>
-                    </Link>
+                    <Input placeholder="username" onChange={(e) => setUsername(e.target.value)} />
+                    <Input placeholder="passowrd" type="password" onChange={(e) => setPassword(e.target.value)} />
+                    <Button onClick={handleClick} disabled={isFetching}>Login</Button>
+                    {error && <Error>
+                        Wrong username or password
+                    </Error>}
                     <Linka>FORGOT PASSWORD?</Linka>
                     <Link to="/register" style={{ color: 'inherit', textDecoration: 'inherit' }}>
                         <Linka>CREATE NEW ACCOUNT</Linka>

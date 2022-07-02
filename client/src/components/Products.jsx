@@ -8,7 +8,6 @@ Description: Displays the products from data.js
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { popularProducts } from "../data.js";
 import Product from "./Product.jsx";
 
 
