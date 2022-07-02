@@ -1,6 +1,6 @@
 # Created by jd3545@rit.edu
 
-Project needs backend to be fully functioning, this is only the front end implementation & some pages aren't fully functioning because of that
+Full stack e-commerce website
 
 if 'react-scripts' is not recognized as an internal or external command
 https://stackoverflow.com/questions/47928735/react-scripts-is-not-recognized-as-an-internal-or-external-command
